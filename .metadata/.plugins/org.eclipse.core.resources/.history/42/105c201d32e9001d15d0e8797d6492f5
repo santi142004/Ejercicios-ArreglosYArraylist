@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Practica {
+    public static void main(String[] args) {
+        int n = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de estudiantes:"));
+
+        ArrayList<String> nombres = new ArrayList<>();
+        ArrayList<Integer> edades = new ArrayList<>();
+
+        // Pedimos los datos de cada estudiante
+        for (int i = 0; i < n; i++) {
+            nombres.add(JOptionPane.showInputDialog("Ingrese el nombre del estudiante " + (i + 1) + ":"));
+            edades.add(Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad de " + nombres.get(i) + ":")));
+        }
+
+        // Buscamos estudiantes por edad
+        int edadBuscada = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad de los estudiantes que desea buscar:"));
+        ArrayList<String> estudiantesEncontrados = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            if (edades.get(i) == edadBuscada) {
+                estudiantesEncontrados.add(nombres.get(i));
+            }
+        }
+
+        // Mostramos el resultado de la búsqueda
+        if (estudiantesEncontrados.size() > 0) {
+            String mensaje = "Los estudiantes con edad " + edadBuscada + " son:\n";
+            for (String estudiante : estudiantesEncontrados) {
+                mensaje += "- " + estudiante + "\n";
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún estudiante con la edad " + edadBuscada + ".");
+        }
+    }
+}
